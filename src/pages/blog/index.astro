@@ -1,0 +1,59 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout title="Writeups | Engr. Christine Sheen Ligan Baron-Vergara">
+    {/* Navigation */}
+    <nav class="fixed top-0 w-full z-50 bg-background/60 backdrop-blur-xl">
+        <div class="flex justify-between items-center px-8 py-6 w-full max-w-7xl mx-auto">
+            <a class="text-2xl font-black tracking-tighter text-primary font-headline uppercase" href="/">engr. cs</a>
+            <div class="hidden md:flex items-center gap-10">
+                <a class="font-headline uppercase tracking-tight text-sm text-white/70 hover:text-white transition-colors" href="/">HOME</a>
+                <a class="font-headline uppercase tracking-tight text-sm text-primary border-b-2 border-primary pb-1" href="/blog">WRITEUPS</a>
+                <a class="font-headline uppercase tracking-tight text-sm text-white/70 hover:text-white transition-colors" href="/contact">CONTACT</a>
+            </div>
+        </div>
+    </nav>
+
+	<main class="pt-32 pb-24 px-8 max-w-7xl mx-auto">
+		<header class="mb-20 text-center">
+			<span class="font-label text-primary uppercase tracking-[0.3em] text-xs mb-6 block">Editorial Archives</span>
+			<h1 class="font-headline text-6xl md:text-7xl font-bold tracking-tighter text-white">
+				The <span class="text-primary italic">Archive</span>
+			</h1>
+		</header>
+        
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+			{posts.map(post => (
+				<a href={`/blog/${post.id}`} class="group bg-surface-container-low p-8 rounded-lg hover:bg-surface-container hover:border-primary border border-transparent transition-all duration-300">
+                    <span class="text-primary font-bold text-xs uppercase tracking-widest block mb-4">
+                        {post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                    </span>
+                    <h2 class="text-2xl font-headline font-bold text-white group-hover:text-primary mb-4 transition-colors">
+                        {post.data.title}
+                    </h2>
+                    <p class="text-on-surface-variant text-sm leading-relaxed">{post.data.description}</p>
+				</a>
+			))}
+		</div>
+	</main>
+    
+    <footer class="w-full py-12 px-8 bg-surface-container-lowest border-t border-white/5">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-8 w-full max-w-7xl mx-auto">
+            <div class="flex flex-col items-center md:items-start gap-4">
+                <span class="text-primary font-bold font-headline uppercase tracking-tight">engr. cs</span>
+                <p class="font-body text-xs tracking-widest uppercase text-white/40 text-center md:text-left">© 2026 Virtual Buddy Solutions</p>
+            </div>
+            <div class="flex gap-8">
+                <a class="font-body text-xs tracking-widest uppercase text-white/40 hover:text-primary transition-colors duration-300" href="mailto:engineerbaron28@gmail.com">Gmail</a>
+                <a class="font-body text-xs tracking-widest uppercase text-white/40 hover:text-primary transition-colors duration-300" href="#">Facebook</a>
+                <a class="font-body text-xs tracking-widest uppercase text-white/40 hover:text-primary transition-colors duration-300" href="https://www.linkedin.com/in/engrchristinevergara/">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+</Layout>

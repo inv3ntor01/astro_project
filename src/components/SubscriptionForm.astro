@@ -1,0 +1,115 @@
+---
+---
+<div class="subscription-card glass">
+	<h3>Join the Newsletter</h3>
+	<p>Get the latest articles and insights delivered straight to your inbox.</p>
+	<form id="subscribe-form">
+		<input type="email" id="email" placeholder="Enter your email" required />
+		<button type="submit">Subscribe</button>
+	</form>
+	<p id="message" class="message"></p>
+</div>
+
+<script>
+	const form = document.getElementById('subscribe-form') as HTMLFormElement;
+	const message = document.getElementById('message') as HTMLParagraphElement;
+
+	form?.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		const email = (document.getElementById('email') as HTMLInputElement).value;
+
+		message.textContent = 'Subscribing...';
+		message.className = 'message loading';
+
+		try {
+			const res = await fetch('/api/subscribe.json', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ email }),
+			});
+
+			const data = await res.json();
+
+			if (res.ok) {
+				message.textContent = data.message;
+				message.className = 'message success';
+				form.reset();
+			} else {
+				throw new Error(data.error || 'Something went wrong');
+			}
+		} catch (err: any) {
+			message.textContent = err.message;
+			message.className = 'message error';
+		}
+	});
+</script>
+
+<style>
+	.subscription-card {
+		padding: 2.5rem;
+		text-align: center;
+		max-width: 600px;
+		margin: 2rem auto;
+	}
+
+	h3 {
+		font-size: 1.75rem;
+		margin-bottom: 1rem;
+	}
+
+	p {
+		color: var(--muted);
+		margin-bottom: 2rem;
+	}
+
+	form {
+		display: flex;
+		gap: 0.5rem;
+	}
+
+	input {
+		flex: 1;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid var(--glass-border);
+		padding: 0.8rem 1.2rem;
+		border-radius: 0.5rem;
+		color: white;
+		outline: none;
+		transition: border-color 0.2s;
+	}
+
+	input:focus {
+		border-color: var(--accent);
+	}
+
+	button {
+		background: var(--accent);
+		color: white;
+		border: none;
+		padding: 0.8rem 1.5rem;
+		border-radius: 0.5rem;
+		font-weight: 600;
+		cursor: pointer;
+		transition: background 0.2s;
+	}
+
+	button:hover {
+		background: var(--accent-light);
+	}
+
+	.message {
+		margin-top: 1rem;
+		font-size: 0.9rem;
+		font-weight: 500;
+	}
+
+	.success { color: #10b981; }
+	.error { color: #ef4444; }
+	.loading { color: var(--accent); }
+
+	@media (max-width: 480px) {
+		form {
+			flex-direction: column;
+		}
+	}
+</style>

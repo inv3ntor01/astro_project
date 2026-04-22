@@ -1,0 +1,45 @@
+---
+import SubscriptionForm from './SubscriptionForm.astro';
+---
+<footer class="container">
+	<SubscriptionForm />
+	<div class="footer-bottom">
+		<p>&copy; 2024 AstroBlog. Built with speed and style.</p>
+		<div class="socials">
+			<a href="#">Twitter</a>
+			<a href="#">GitHub</a>
+			<a href="#">LinkedIn</a>
+		</div>
+	</div>
+</footer>
+
+<style>
+	footer {
+		margin-top: 4rem;
+		padding-bottom: 4rem;
+	}
+
+	.footer-bottom {
+		margin-top: 4rem;
+		padding-top: 2rem;
+		border-top: 1px solid var(--glass-border);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		color: var(--muted);
+		font-size: 0.9rem;
+	}
+
+	.socials {
+		display: flex;
+		gap: 1.5rem;
+	}
+
+	@media (max-width: 600px) {
+		.footer-bottom {
+			flex-direction: column;
+			gap: 1.5rem;
+			text-align: center;
+		}
+	}
+</style>
