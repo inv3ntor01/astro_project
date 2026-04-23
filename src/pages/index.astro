@@ -1,8 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import WorkExperienceTimeline from '../components/WorkExperienceTimeline.astro';
-import myPhoto from '../assets/images/profile.png';
-import { Image } from 'astro:assets';
+//import myPhoto from '../assets/images/profile.png';
+//import {Image} from 'astro:assets';
 
 
 const technicalSkills = [
@@ -150,10 +150,10 @@ const achievements = [
             </div>
             <div class="lg:col-span-5 relative">
                 <div class="aspect-[4/5] bg-surface-container-low rounded-lg overflow-hidden white hover:grayscale-0 transition-all duration-700">
-                    <Image
+                    <img
                         class="w-full h-full object-cover"
                         alt="Professional portrait of Engr. Christine Sheen"
-                        src={myPhoto} 
+                        src="/images/profile.png" 
                         alt="Photo of Engr. CS Vergara" 
                         width={1080}
                         height={1080}
