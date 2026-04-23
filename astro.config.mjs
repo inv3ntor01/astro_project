@@ -9,7 +9,6 @@ import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'static', //For static site
   vite: {
     plugins: [tailwindcss()]
   },
