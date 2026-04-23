@@ -8,19 +8,25 @@ const { experiences } = Astro.props;
         {experiences.map((exp, index) => (
             <div class="relative flex flex-col md:flex-row items-center gap-8 group">
                 {index % 2 === 0 ? (
-                    <div class="md:w-1/2 md:text-right pr-8 order-2 md:order-1">
-                        <span class="text-primary font-bold font-headline text-sm tracking-widest mb-2 block">{exp.date}</span>
-                        <h3 class="text-2xl font-bold text-white mb-2">{exp.title}</h3>
-                        <p class="text-on-surface-variant italic mb-4">{exp.organization}</p>
-                        <p class="text-on-surface-variant max-w-md ml-auto">{exp.description}</p>
-                    </div>
+                    <>
+                        <div class="md:w-1/2 md:text-right pr-8 order-2 md:order-1">
+                            <span class="text-primary font-bold font-headline text-sm tracking-widest mb-2 block uppercase">{exp.date}</span>
+                            <h3 class="text-2xl font-bold text-white mb-2">{exp.title}</h3>
+                            <p class="text-on-surface-variant italic mb-4">{exp.organization}</p>
+                            <p class="text-on-surface-variant max-w-md ml-auto">{exp.description}</p>
+                        </div>
+                        <div class="hidden md:block md:w-1/2 order-3"></div>
+                    </>
                 ) : (
-                    <div class="md:w-1/2 pl-8 order-3">
-                        <span class="text-primary font-bold font-headline text-sm tracking-widest mb-2 block">{exp.date}</span>
-                        <h3 class="text-2xl font-bold text-white mb-2">{exp.title}</h3>
-                        <p class="text-on-surface-variant italic mb-4">{exp.organization}</p>
-                        <p class="text-on-surface-variant max-w-md">{exp.description}</p>
-                    </div>
+                    <>
+                        <div class="hidden md:block md:w-1/2 order-1"></div>
+                        <div class="md:w-1/2 pl-8 order-2 md:order-3">
+                            <span class="text-primary font-bold font-headline text-sm tracking-widest mb-2 block uppercase">{exp.date}</span>
+                            <h3 class="text-2xl font-bold text-white mb-2">{exp.title}</h3>
+                            <p class="text-on-surface-variant italic mb-4">{exp.organization}</p>
+                            <p class="text-on-surface-variant max-w-md">{exp.description}</p>
+                        </div>
+                    </>
                 )}
                 <div class={`absolute left-[-10px] md:left-1/2 md:translate-x-[-50%] w-5 h-5 ${index % 2 === 0 ? 'bg-primary' : 'bg-primary-container'} rounded-full z-10 border-4 border-surface shadow-[0_0_15px_rgba(255,20,147,0.4)]`}></div>
             </div>

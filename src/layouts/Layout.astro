@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Footer from '../components/footer.astro';
 
 interface Props {
 	title: string;
@@ -28,3 +29,6 @@ const { title, description = "Senior Technical Content Writer & Computer Enginee
 		<slot />
 	</body>
 </html>
+
+<!-- Footer (Appears on ALL pages) -->
+<Footer />

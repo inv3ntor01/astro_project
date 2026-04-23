@@ -1,7 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import WorkExperienceTimeline from '../components/WorkExperienceTimeline.astro';
-
+import myPhoto from '../assets/images/profile.png';
+import { Image } from 'astro:assets';
 
 
 const technicalSkills = [
@@ -16,6 +17,72 @@ const affiliations = [
     { title: 'Member for Professional Membership', org: 'ICPEP National Board (2023 – 2024)' },
     { title: 'Chapter President', org: 'ICPEP Region 11 (2023 – 2024)' },
     { title: 'Professional Development Officer', org: 'ICPEP Region 11 (2022)' }
+];
+
+const workExperience = [
+    {
+        organization: "TikTok",
+        title: "TikTok Live Gaming Streamer",
+        date: "OCTOBER 2025 - PRESENT",
+        description: "Creates and Manages my Social Media Platforms",
+    },
+    {
+        organization: "X10 Technologies, Inc.",
+        title: "Senior Technical Content Writer",
+        date: "SEPTEMBER 2023 - JANUARY 2026",
+        description: "Global Document Custodian, Records Department Head, Policies and Manuals Writer, RFPs(Canada, US, and Philippines), Technical Reports, Document Controls, Formatting, and Branding"
+    },
+    {
+        organization: "X10 Technologies, Inc.",
+        title: "Technical Content Writer",
+        date: "JULY 2020 - SEPTEMBER 2023",
+        description: "Creating and managing technical documentation and content."
+
+    },
+    {
+        organization: "TaskBullet Philippines",
+        title: "Multi-skilled Virtual Assistant",
+        date: "MAY 2020 - OCTOBER 2020",
+        description: "Providing diverse virtual assistance services."
+
+    },
+    {
+        organization: "University of Mindanao Digos College",
+        title: "Program Head for Computer Engineering",
+        date: "JANUARY 2022 - JANUARY 2023",
+        description: "Leadership role in the Computer Engineering program."
+
+    },
+    {
+        organization: "University of Mindanao Digos College",
+        title: "Full-time Engineering Faculty and Lab Custodian",
+        date: "JUNE 2019 - JANUARY 2022",
+        description: "Academic instruction and laboratory management."
+    },
+    {
+        organization: "The Virtual S Web Solutions | Davao City",
+        title: "Administrative Supervisor and Onboarding Trainer",
+        date: "OCTOBER 2018 - MAY 2019",
+        description: "Administrative Supervisor and Onboarding Trainer"
+    },
+    {
+        organization: "The Virtual S Web Solutions | Davao City",
+        title: "All Rounder Administrative Assistant",
+        date: "AUGUST 2018 - OCTOBER 2018",
+        description: "All Rounder Administrative Assistant"
+    },
+    {
+        organization: "Callbox Philippines Incorporated",
+        title: "Technical & Marketing Crew",
+        date: "APRIL 2017 - JUNE 2017",
+        description: "Technical & Marketing Crew"
+    },
+    {
+        organization: "Launchora",
+        title: "Book Author and Self-Help Writer and Speaker",
+        date: "AUGUST 2013 - 2022",
+        description: "Book Author and Self-Help Writer and Speaker"
+    }
 ];
 
 const achievements = [
@@ -83,10 +150,13 @@ const achievements = [
             </div>
             <div class="lg:col-span-5 relative">
                 <div class="aspect-[4/5] bg-surface-container-low rounded-lg overflow-hidden white hover:grayscale-0 transition-all duration-700">
-                    <img
+                    <Image
                         class="w-full h-full object-cover"
                         alt="Professional portrait of Engr. Christine Sheen"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1u-wJXqLIrJ5Cjvl05O0EViKVuDb_qZG6Ab5V_TvFlmUl4dRMHQs4QX1-A9qAQSVVJv2njmYH6Pb424z6KqAXqmRgd1k-u-YzaBk14lQZUBbFBZU9My-LBi6z5G_cdycIvOtLLuoQi105yaz0QUV7chMZIdanA_Pkp9qQesJBmLOdw2KQh6d3b6wC3oKYd48_jGZyieW7XTs_A7R2-w64XNYE0v9ejBJPH8xi0OH35T96jVUQhOJ0ETBhuG5XeRWQRbf79iVxXOI"
+                        src={myPhoto} 
+                        alt="Photo of Engr. CS Vergara" 
+                        width={1080}
+                        height={1080}
                     />
                 </div>
                 <div class="absolute -bottom-6 -left-6 bg-primary text-on-primary p-6 rounded-lg hidden md:block">
@@ -157,77 +227,7 @@ const achievements = [
         </section>
 
         {/* Work Experience Timeline */}
-        <section class="max-w-7xl mx-auto px-8 py-24">
-            <h2 class="text-4xl font-bold font-headline mb-16 text-center">Work <span class="text-primary">Experience</span></h2>
-            <div class="space-y-12 relative before:absolute before:left-0 md:before:left-1/2 before:w-[1px] before:h-full before:bg-outline-variant/30">
-                {/* Item 1 */}
-                <div class="relative flex flex-col md:flex-row items-center gap-8 group">
-                    <div class="md:w-1/2 md:text-right pr-8 order-2 md:order-1">
-                        <span class="text-primary font-bold font-headline text-sm tracking-widest mb-2 block">OCTOBER 2025 — PRESENT</span>
-                        <h3 class="text-2xl font-bold text-white mb-2">TikTok Live Gaming Streamer</h3>
-                        <p class="text-on-surface-variant italic mb-4">Self-Managed</p>
-                        <p class="text-on-surface-variant max-w-md ml-auto">Creates and manages social media platforms and content.</p>
-                    </div>
-                    <div class="absolute left-[-10px] md:left-1/2 md:translate-x-[-50%] w-5 h-5 bg-primary rounded-full z-10 border-4 border-surface shadow-[0_0_15px_rgba(255,20,147,0.4)]"></div>
-                    <div class="md:w-1/2 order-3"></div>
-                </div>
-                {/* Item 2 */}
-                <div class="relative flex flex-col md:flex-row items-center gap-8 group">
-                    <div class="md:w-1/2 order-2 md:order-1"></div>
-                    <div class="absolute left-[-10px] md:left-1/2 md:translate-x-[-50%] w-5 h-5 bg-primary-container rounded-full z-10 border-4 border-surface shadow-[0_0_15px_rgba(255,71,156,0.4)]"></div>
-                    <div class="md:w-1/2 pl-8 order-3">
-                        <span class="text-primary font-bold font-headline text-sm tracking-widest mb-2 block">SEPTEMBER 2023 — JANUARY 2026</span>
-                        <h3 class="text-2xl font-bold text-white mb-2">Senior Technical Content Writer</h3>
-                        <p class="text-on-surface-variant italic mb-4">X10 Technologies, Inc.</p>
-                        <p class="text-on-surface-variant max-w-md">Global Document Custodian, Records Department Head, Policies and Manuals Writer. Handling RFPs (Canada, US, & Philippines), Technical Reports, Document Controls, Formatting, and Branding.</p>
-                    </div>
-                </div>
-                {/* Item 3 */}
-                <div class="relative flex flex-col md:flex-row items-center gap-8 group">
-                    <div class="md:w-1/2 md:text-right pr-8 order-2 md:order-1">
-                        <span class="text-primary font-bold font-headline text-sm tracking-widest mb-2 block">JULY 2020 — SEPTEMBER 2023</span>
-                        <h3 class="text-2xl font-bold text-white mb-2">Technical Content Writer</h3>
-                        <p class="text-on-surface-variant italic mb-4">X10 Technologies, Inc.</p>
-                        <p class="text-on-surface-variant max-w-md ml-auto">Creating and managing technical documentation and content.</p>
-                    </div>
-                    <div class="absolute left-[-10px] md:left-1/2 md:translate-x-[-50%] w-5 h-5 bg-primary rounded-full z-10 border-4 border-surface shadow-[0_0_15px_rgba(255,20,147,0.4)]"></div>
-                    <div class="md:w-1/2 order-3"></div>
-                </div>
-                {/* Item 4 */}
-                <div class="relative flex flex-col md:flex-row items-center gap-8 group">
-                    <div class="md:w-1/2 order-2 md:order-1"></div>
-                    <div class="absolute left-[-10px] md:left-1/2 md:translate-x-[-50%] w-5 h-5 bg-primary-container rounded-full z-10 border-4 border-surface shadow-[0_0_15px_rgba(255,71,156,0.4)]"></div>
-                    <div class="md:w-1/2 pl-8 order-3">
-                        <span class="text-primary font-bold font-headline text-sm tracking-widest mb-2 block">JANUARY 2022 — JANUARY 2023</span>
-                        <h3 class="text-2xl font-bold text-white mb-2">Program Head for Computer Engineering</h3>
-                        <p class="text-on-surface-variant italic mb-4">University of Mindanao Digos College</p>
-                        <p class="text-on-surface-variant max-w-md">Leadership role in the Computer Engineering program.</p>
-                    </div>
-                </div>
-                {/* Item 5 */}
-                <div class="relative flex flex-col md:flex-row items-center gap-8 group">
-                    <div class="md:w-1/2 md:text-right pr-8 order-2 md:order-1">
-                        <span class="text-primary font-bold font-headline text-sm tracking-widest mb-2 block">JUNE 2019 — JANUARY 2022</span>
-                        <h3 class="text-2xl font-bold text-white mb-2">Engineering Faculty & Lab Custodian</h3>
-                        <p class="text-on-surface-variant italic mb-4">University of Mindanao Digos College</p>
-                        <p class="text-on-surface-variant max-w-md ml-auto">Academic instruction and laboratory management.</p>
-                    </div>
-                    <div class="absolute left-[-10px] md:left-1/2 md:translate-x-[-50%] w-5 h-5 bg-primary rounded-full z-10 border-4 border-surface shadow-[0_0_15px_rgba(255,20,147,0.4)]"></div>
-                    <div class="md:w-1/2 order-3"></div>
-                </div>
-                {/* Item 6 */}
-                <div class="relative flex flex-col md:flex-row items-center gap-8 group">
-                    <div class="md:w-1/2 order-2 md:order-1"></div>
-                    <div class="absolute left-[-10px] md:left-1/2 md:translate-x-[-50%] w-5 h-5 bg-primary-container rounded-full z-10 border-4 border-surface shadow-[0_0_15px_rgba(255,71,156,0.4)]"></div>
-                    <div class="md:w-1/2 pl-8 order-3">
-                        <span class="text-primary font-bold font-headline text-sm tracking-widest mb-2 block">MAY 2020 — OCTOBER 2020</span>
-                        <h3 class="text-2xl font-bold text-white mb-2">Multi-skilled Virtual Assistant</h3>
-                        <p class="text-on-surface-variant italic mb-4">TaskBullet Philippines</p>
-                        <p class="text-on-surface-variant max-w-md">Providing diverse virtual assistance services.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <WorkExperienceTimeline experiences={workExperience} />
 
         {/* Technical Skills & Affiliations */}
         <section class="bg-surface-container py-24">
@@ -314,22 +314,4 @@ const achievements = [
             </div>
         </section>
     </main>
-
-    {/* Footer Execution */}
-    <footer class="bg-surface-container-lowest w-full py-12 px-8 mt-20">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-center md:text-left">
-                <span class="font-headline text-lg text-white block mb-2 uppercase">engr. cs</span>
-                <p class="font-body text-xs tracking-tight text-white/40">© 2026 Virtual Buddy Solutions</p>
-            </div>
-            <div class="flex gap-8">
-                <a class="text-primary font-body text-xs tracking-tight uppercase hover:text-white transition-opacity opacity-80 hover:opacity-100" href="mailto:engineerbaron28@gmail.com">Gmail</a>
-                <a class="text-primary font-body text-xs tracking-tight uppercase hover:text-white transition-opacity opacity-80 hover:opacity-100" href="#">Facebook</a>
-                <a class="text-primary font-body text-xs tracking-tight uppercase hover:text-white transition-opacity opacity-80 hover:opacity-100" href="https://www.linkedin.com/in/engrchristinevergara/">LinkedIn</a>
-            </div>
-            <div class="text-right">
-                <p class="font-body text-xs tracking-tight text-white/20">DESIGNED BY INV3NTOR</p>
-            </div>
-        </div>
-    </footer>
 </Layout>
