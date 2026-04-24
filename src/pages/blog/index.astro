@@ -11,7 +11,13 @@ const posts = (await getCollection('blog')).sort(
     {/* Navigation */}
     <nav class="fixed top-0 w-full z-50 bg-background/60 backdrop-blur-xl">
         <div class="flex justify-between items-center px-8 py-6 w-full max-w-7xl mx-auto">
-            <a class="text-2xl font-black tracking-tighter text-primary font-headline uppercase" href="/">engr. cs</a>
+          <a href="/" class="block">
+            <img 
+                    src="public/images/screen2.png"
+                    alt="VBTecH Solutions Logo"
+                    class="h-20 w-auto object-contain transition-transform duration-300 ease-in-out hover:scale-110"
+            />
+          </a>
             <div class="hidden md:flex items-center gap-10">
                 <a class="font-headline uppercase tracking-tight text-sm text-white/70 hover:text-white transition-colors" href="/">HOME</a>
                 <a class="font-headline uppercase tracking-tight text-sm text-primary border-b-2 border-primary pb-1" href="/blog">BLOG</a>
@@ -24,7 +30,7 @@ const posts = (await getCollection('blog')).sort(
 		<header class="mb-20 text-center">
 			<span class="font-label text-primary uppercase tracking-[0.3em] text-xs mb-6 block">Editorial Archives</span>
 			<h1 class="font-headline text-6xl md:text-7xl font-bold tracking-tighter text-white">
-				The <span class="text-primary italic">Archive</span>
+				SAMPUNG TULA <span class="text-primary italic">NANG PAGLIMOT</span>
 			</h1>
 		</header>
         
