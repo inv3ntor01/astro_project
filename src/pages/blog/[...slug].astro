@@ -16,6 +16,18 @@ const { Content } = await render(post);
 ---
 
 <Layout title={post.data.title} description={post.data.description}>
+  <!-- CSS to preserve line breaks for peotry-->
+  <style>
+    /*Preserves line breaks from Markdown (Enter key) */
+    .blog-content p {
+      white-space: pre-line;
+      line-height: 1.8;
+    }
+    /* Adds space between stanzas (when you press Enter twice)*/
+    .blog-content p+p {
+      margin-top: 1.5rem;
+    }
+  </style>
 	<main class="pt-32 pb-24 px-4 max-w-4xl mx-auto">
 		<article>
 			<header class="mb-16 text-center">
@@ -31,7 +43,7 @@ const { Content } = await render(post);
 					<img src={post.data.heroImage} alt="" class="w-full max-w-3xl mx-auto rounded-lg shadow-2xl" />
 				)}
 			</header>
-			<div class="prose prose-invert prose-lg prose-primary max-w-none max-auto text-center">
+			<div class="prose prose-invert prose-lg prose-primary max-w-none max-auto text-center blog-content">
 				<Content />
 			</div>
 		</article>
