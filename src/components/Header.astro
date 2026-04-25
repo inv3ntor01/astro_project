@@ -1,72 +1,39 @@
 ---
+const { pathname } = Astro.url;
+const normalizedPathname = pathname.replace(/\/$/, "");
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/blog", label: "Blog" },
+  { href: "/contact", label: "Contact" },
+];
 ---
-<header class="glass">
-	<nav class="container">
-		<a href="/" class="logo">ASTRO<span>BLOG</span></a>
-		<div class="links">
-			<a href="/">Home</a>
-			<a href="/blog">Blog</a>
-			<a href="/subscribe" class="cta">Subscribe</a>
-		</div>
-	</nav>
-</header>
 
-<style>
-	header {
-		position: sticky;
-		top: 1rem;
-		margin: 0 1rem;
-		z-index: 100;
-		border-radius: 50px !important;
-		padding: 0.75rem 0;
-	}
-
-	nav {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-
-	.logo {
-		font-size: 1.5rem;
-		font-weight: 900;
-		letter-spacing: -0.05em;
-	}
-
-	.logo span {
-		color: var(--accent);
-	}
-
-	.links {
-		display: flex;
-		gap: 2rem;
-		align-items: center;
-	}
-
-	.links a {
-		font-weight: 500;
-		font-size: 0.9rem;
-	}
-
-	.cta {
-		background: var(--accent);
-		color: white !important;
-		padding: 0.5rem 1.25rem;
-		border-radius: 50px;
-		transition: transform 0.2s ease, background 0.2s ease;
-	}
-
-	.cta:hover {
-		background: var(--accent-light);
-		transform: translateY(-1px);
-	}
-
-	@media (max-width: 600px) {
-		.links {
-			gap: 1rem;
-		}
-		.cta {
-			display: none;
-		}
-	}
-</style>
+<nav class="fixed top-0 w-full z-50 bg-background/60 backdrop-blur-xl">
+    <div class="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto w-full">
+      <a href="/" class="block">
+        <img 
+            src="/images/screen2.png"
+            alt="VBTecH Solutions Logo"
+            class="h-20 w-auto object-contain transition-transform duration-300 ease-in-out hover:scale-110"
+        />
+      </a>
+        <div class="hidden md:flex gap-8 items-center">
+            {navLinks.map(({ href, label }) => {
+                const isActive = normalizedPathname === (href === "/" ? "" : href);
+                return (
+                    <a
+                        class={`font-headline uppercase tracking-widest text-sm transition-colors duration-300 scale-95 active:duration-100 ${
+                            isActive 
+                            ? "text-primary border-b-2 border-primary pb-1" 
+                            : "text-white/70 hover:text-primary"
+                        }`}
+                        href={href}
+                    >
+                        {label}
+                    </a>
+                );
+            })}
+        </div>
+    </div>
+</nav>
