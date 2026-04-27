@@ -2,22 +2,21 @@
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a, b) => a.data.id - b.data.id);
 ---
 
-<Layout title="Blog | Engr. Christine Sheen Ligan Baron-Vergara">
+<Layout title="Blog | CS Baron-Vergara">
 	<main class="pt-32 pb-24 px-8 max-w-7xl mx-auto">
 		<header class="mb-20 text-center">
-			<span class="font-label text-primary uppercase tracking-[0.3em] text-xs mb-6 block">Editorial Archives</span>
+			<span class="font-label text-primary uppercase tracking-[0.3em] text-xs mb-6 block">STREET WONDERLAND</span>
 			<h1 class="font-headline text-6xl md:text-7xl font-bold tracking-tighter text-white">
-				SAMPUNG TULA <span class="text-primary italic">NANG PAGLIMOT</span>
+				SAMPUNG TULA<span class="text-primary italic">NANG PAGLIMOT</span>
 			</h1>
 		</header>
         
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-			{posts.map(post => (
+			{sortedPosts.map(post => (
 				<a href={`/blog/${post.id}`} class="group bg-surface-container-low p-8 rounded-lg hover:bg-surface-container hover:border-primary border border-transparent transition-all duration-300">
                     <span class="text-primary font-bold text-xs uppercase tracking-widest block mb-4">
                         {post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
