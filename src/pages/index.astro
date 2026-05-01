@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import WorkExperienceTimeline from '../components/WorkExperienceTimeline.astro';
-
+import CertModal from '../components/CertModal.astro';
 
 
 const technicalSkills = [
@@ -85,7 +85,7 @@ const workExperience = [
 ];
 
 const achievements = [
-    { year: '2022', title: 'Laboratory Safety Series III', org: 'Topic: Laboratory Equipment and Facilities', link: 'https://drive.google.com/file/d/1f_2FagvNej1ao_tkZYsnhGrYE1U6l4ve/view?usp=drive_link' },
+{ year: '2022', title: 'Laboratory Safety Series III', org: 'Topic: Laboratory Equipment and Facilities', thumbnail: '/images/seminars/lab-thumb.webp', fullRes: '/images/seminars/lab-full.webp'},
     { year: '2022', title: 'Development Management 1: The Leadership That We Want!', org: 'Universidad de Sta. Isabel, Elias Angeles St., Naga City', link: 'https://drive.google.com/file/d/1mHQOD8zDtsVoEowTDbd7rHjMn1PIzECx/view?usp=drive_link' },
     { year: '2021', title: 'Introduction to Kubernetes', org: 'Trend Micro', link: 'https://drive.google.com/file/d/1NkBjWh5UkgPX1F6b3LgXwyEEGE1Lzx2U/view?usp=drive_link' },
     { year: '2021', title: '1st International Conference on Emerging Technologies and Innovations (ICETI - 1)', org: 'University of Mindanao', link: 'https://drive.google.com/file/d/12VTD1GQDeIs4iiU2y1xAWlL-cgr7yAaJ/view?usp=drive_link' },
@@ -125,9 +125,7 @@ const achievements = [
                     <img
                         class="w-full h-full object-cover"
                         alt="Professional portrait of Engr. Christine Sheen"
-                        src="/images/profile.png" 
-                        width={1080}
-                        height={1080}
+                        src="/images/profile.png"  
                     />
                 </div>
                 <div class="absolute -bottom-6 -right-6 md:-left-6 bg-primary text-on-primary p-4 md:p-6 rounded-lg">
@@ -271,16 +269,15 @@ const achievements = [
             <h2 class="text-3xl md:text-4xl font-bold font-headline mb-10 md:mb-16">Seminars & <span class="text-primary">Achievements</span></h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 {achievements.map((ach) => (
-                    <a
-                            href={ach.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="group bg-surface-container-low p-6 md:p-8 rounded-lg hover:bg-primary transition-all duration-300"
-                    >
-                        <p class="text-primary group-hover:text-on-primary font-bold mb-3 md:mb-4 text-sm md:text-base">{ach.year}</p>
-                        <h4 class="text-base md:text-lg font-headline font-bold text-white group-hover:text-on-primary mb-2">{ach.title}</h4>
-                        <p class="text-xs md:text-sm text-on-surface-variant group-hover:text-on-primary/80">{ach.org}</p>
-                    </a>
+                <CertModal
+                  className="group bg-surface-container-low p-6 md:p-8 rounded-lg hover:bg-primary transition-all duration-300"
+                  thumbnailSrc={ach.thumbnail}
+                  fullResSrc={ach.fullRes}
+                  alt={ach.title}
+                  title={`${ach.year} - ${ach.title}`} 
+                  organization={ach.org}
+                  year={ach.year}
+                />
                 ))}
             </div>
         </section>

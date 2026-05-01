@@ -7,7 +7,7 @@ import react from '@astrojs/react';
 
 import cloudflare from '@astrojs/cloudflare';
 
-// https://astro.build/config
+//https://astro.build/config
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
@@ -19,7 +19,8 @@ export default defineConfig({
       entrypoint: 'astro/assets/services/sharp'
     }
   },
-  adapter: cloudflare({
-    mode: 'static'
-  })
+// Enable this when the internet is back
+//  adapter: cloudflare({
+//    mode: 'static'
+//  })
 });

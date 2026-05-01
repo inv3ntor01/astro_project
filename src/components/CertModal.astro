@@ -1,0 +1,287 @@
+---
+interface Props {
+  thumbnailSrc: string;
+  fullResSrc: string;
+  alt: string;
+  title?: string;
+  organization?: string;
+  year?: string;
+  className?: string;
+}
+
+const { thumbnailSrc, fullResSrc, alt, organization, title, year, className= '' } = Astro.props;
+---
+
+<div class={`cert-wrapper ${className}`}>
+  <!-- 1. The Thumbnail (Trigger) -->
+  <button class="cert-trigger" aria-label="View certification">
+    <img src={thumbnailSrc} alt={alt} loading="lazy" />
+  <!--Card Content Overlay (Visible on thumbnail) -->
+    <div class="card-content">
+      {year && <p class="card-year">{year}</p>}
+      {title && <h4 class="card-title">{title}</h4>}
+      {organization && <p class="card-org">{organization}</p>}
+    </div>
+
+  <!--Hover overlay Icon -->
+    <div class="overlay">
+      <span class="material-symbols-outlined text-white text-3xl">visibility</span>
+    </div>
+  </button>
+
+  <!-- 2. The Modal (Hidden by default) -->
+  <div class="cert-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+
+    <div class="modal-content">
+      <button class="close-btn" aria-label="Close modal">&times;</button>
+
+      <div class="image-container">
+        <img src={fullResSrc} alt={alt} />
+        <!-- The Shield: Prevents Right Click / Drag on the full res image -->
+        <div class="image-shield"></div>
+      </div>
+
+      {title && <p class="modal-caption">{title}</p>}
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Wrapper */
+  .cert-wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+  }
+
+  /* Thumbnail Styling */
+  .cert-trigger {
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 0.5rem;
+    transition: transform 0.2s ease;
+    display: block;
+    text-align:left;
+  }
+
+  .cert-trigger:hover {
+    transform: scale(1.02);
+  }
+
+  .cert-trigger img {
+    display: block;
+    width: 100%; /* Make image fill wrapper */
+    height: auto;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+/*Card Content (Year, Title, Org) */
+  .card-content {
+    position: relative;
+    z-index: 5;
+    padding: 1rem;
+    pointer-events: none;
+  }
+
+  .card-year {
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-title {
+    font-size: 0.875rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+    line-height: 1.4;
+  }
+
+  .card-org {
+    font-size: 0.75rem;
+    opacity: 0.8;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+    border-radius: 0.5rem;
+    z-index: 10;
+  }
+
+
+  .cert-trigger:hover .overlay {
+    opacity: 1;
+  }
+
+  /* Modal Overlay (The Fade Screen) */
+  .cert-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Hidden State */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  /* Active State (Added via JS) */
+  .cert-modal.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* The Dark Background */
+  .modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    cursor: pointer; /* Indicates clickable to close */
+  }
+
+  /* The Image Container */
+  .modal-content {
+    position: relative;
+    z-index: 1001;
+    max-width: 90%;
+    max-height: 90%;
+    background: white;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+  }
+
+  .cert-modal.is-open .modal-content {
+    transform: scale(1);
+  }
+
+  .image-container {
+    position: relative;
+    display: block;
+    line-height: 0; /* Remove gap under image */
+  }
+
+  .modal-content img {
+    max-width: 100%;
+    max-height: 80vh;
+    display: block;
+    pointer-events: none; /* Prevents dragging the image itself */
+  }
+
+  /* The Shield (Protection) */
+  .image-shield {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: transparent;
+  }
+
+  /* Close Button */
+  .close-btn {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .modal-caption {
+    text-align: center;
+    margin-top: 10px;
+    color: #333;
+    font-weight: bold;
+  }
+
+  /*Dynamic Styling based on parent classes */
+  .group:hover .card-year {
+    color: inherit;
+  }
+  .group:hover .card-title {
+    color: inherit;
+  }
+  .group:hover .card-org {
+    color: inherit;
+  }
+</style>
+
+<script>
+  // This script runs in the browser
+  document.addEventListener('DOMContentLoaded', () => {
+    // Find all wrappers on the page
+    const wrappers = document.querySelectorAll('.cert-wrapper');
+
+    wrappers.forEach((wrapper) => {
+      const trigger = wrapper.querySelector('.cert-trigger');
+      const modal = wrapper.querySelector('.cert-modal');
+      const backdrop = wrapper.querySelector('.modal-backdrop');
+      const closeBtn = wrapper.querySelector('.close-btn');
+
+      if (!trigger || !modal) return;
+
+      // Function to Open
+      const openModal = () => {
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling background
+      };
+
+      // Function to Close
+      const closeModal = () => {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = ''; // Restore scrolling
+      };
+
+      // Event Listeners
+      trigger.addEventListener('click', openModal);
+      backdrop.addEventListener('click', closeModal); // Click outside
+      closeBtn.addEventListener('click', closeModal);  // Click X button
+
+      // Close on Escape Key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+          closeModal();
+        }
+      });
+
+      // Prevent Right Click on the Shield specifically
+      const shield = wrapper.querySelector('.image-shield');
+      if(shield) {
+        shield.addEventListener('contextmenu', (e) => e.preventDefault());
+      }
+    });
+  });
+</script>
