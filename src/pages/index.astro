@@ -85,12 +85,13 @@ const workExperience = [
 ];
 
 const achievements = [
-{ year: '2022', title: 'Laboratory Safety Series III', org: 'Topic: Laboratory Equipment and Facilities', thumbnail: '/images/seminars/lab-thumb.webp', fullRes: '/images/seminars/lab-full.webp'},
+{ year: '2022', title: 'Laboratory Safety Series III', org: 'University of Mindanao Digos City', thumbnail: '/images/seminars/lab-thumb.webp', fullRes: '/images/seminars/lab-full.webp'},
 { year: '2022', title: 'Development Management 1: The Leadership That We Want!', org: 'Universidad de Sta. Isabel, Elias Angeles St., Naga City', thumbnail: '/images/seminars/manage-thumb.webp', fullRes: '/images/seminars/manage-full.webp' },
 { year: '2021', title: 'Introduction to Kubernetes', org: 'Trend Micro', thumbnail: '/images/seminars/kube-thumb.webp', fullRes: '/images/seminars/kube-full.webp' },
 { year: '2021', title: '1st International Conference on Emerging Technologies and Innovations (ICETI - 1)', org: 'University of Mindanao', thumbnail: '/images/seminars/confe-thumb.webp', fullRes: '/images/seminars/confe-full.webp' },
 { year: '2021', title: 'Introduction to Amazon Web Services', org: 'Trend Micro', thumbnail: '/images/seminars/aws-thumb.webp', fullRes: '/images/seminars/aws-full.webp'},
-    { year: '2021', title: 'Philippine Conference on Data Science and Analytics', org: 'SPARTA', thumbnail: '/images/seminars/sparta-thumb.webp', fullRes: '/images/seminars/sparta-full.webp'}
+{ year: '2021', title: 'Philippine Conference on Data Science and Analytics', org: 'SPARTA', thumbnail: '/images/seminars/sparta-thumb.webp', fullRes: '/images/seminars/sparta-full.webp'},
+{ year: '2026', title: 'Future-Ready Careers: Preparing You To Thrive in a World of Innovation and Opportunity', org: 'Holy Cross of Davao College', thumbnail: '/images/seminars/hcdc-thumb.svg', fullRes: '/images/seminars/hcdc-full.svg'},
 ];
 ---
 
@@ -242,9 +243,9 @@ const achievements = [
                         </div>
                     </div>
                     {/* Certifications */}
-                    <div class="bg-surface p-6 md:p-8 rounded-lg border border-outline-variant/10">
-                        <h2 class="text-xl md:text-2xl font-bold font-headline mb-4 md:mb-6 text-primary flex items-center gap-3">
-                            <span class="material-symbols-outlined">card_membership</span> Certifications
+                    <div class="bg-surface p-6 md:p-8 rounded-2xl border border-outline-variant/10 shadow-xl shadow-black/20">
+                        <h2 class="text-xl md:text-2xl font-bold font-headline mb-6 md:mb-8 text-primary flex items-center gap-3">
+                            <span class="material-symbols-outlined bg-primary/10 p-2 rounded-lg">card_membership</span> Certifications
                         </h2>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
                             {[
@@ -254,8 +255,9 @@ const achievements = [
                                 'DICT-ICT001 Digital Innovation in Government', 'DICT-DLS005 Designing Presentation Slides',
                                 'Professional Organization Representative', 'Aruba Data Center Essentials'
                             ].map((cert) => (
-                                <div class="p-3 bg-surface-container-low rounded">
-                                    <p class="text-xs md:text-sm font-bold">{cert}</p>
+                                <div class="flex items-center gap-3 p-3 bg-surface-container-low rounded-xl border border-outline-variant/5 hover:border-primary/30 transition-colors duration-300 group">
+                                    <span class="material-symbols-outlined text-primary text-sm bg-primary/5 p-1 rounded group-hover:bg-primary group-hover:text-on-primary transition-colors">verified</span>
+                                    <p class="text-xs md:text-sm font-medium text-on-surface-variant group-hover:text-on-surface transition-colors">{cert}</p>
                                 </div>
                             ))}
                         </div>
@@ -266,15 +268,21 @@ const achievements = [
 
         {/* Seminars & Achievements */}
         <section class="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-24">
-            <h2 class="text-3xl md:text-4xl font-bold font-headline mb-10 md:mb-16">Seminars & <span class="text-primary">Achievements</span></h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 md:mb-16 gap-4">
+                <div>
+                    <h2 class="text-3xl md:text-5xl font-bold font-headline mb-4">Seminars & <span class="text-primary">Achievements</span></h2>
+                    <p class="text-on-surface-variant max-w-2xl">A collection of professional development milestones, technical workshops, and industry conferences I've participated in over the years.</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 {achievements.map((ach) => (
                 <CertModal
-                  className="group bg-surface-container-low p-6 md:p-8 rounded-lg hover:bg-primary transition-all duration-300"
                   thumbnailSrc={ach.thumbnail}
                   fullResSrc={ach.fullRes}
                   alt={ach.title}
-                  title={`${ach.year} - ${ach.title}`} 
+                  title={ach.title}
+                  year={ach.year}
                   organization={ach.org}
                 />
                 ))}
