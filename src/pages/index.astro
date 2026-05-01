@@ -86,11 +86,11 @@ const workExperience = [
 
 const achievements = [
 { year: '2022', title: 'Laboratory Safety Series III', org: 'Topic: Laboratory Equipment and Facilities', thumbnail: '/images/seminars/lab-thumb.webp', fullRes: '/images/seminars/lab-full.webp'},
-    { year: '2022', title: 'Development Management 1: The Leadership That We Want!', org: 'Universidad de Sta. Isabel, Elias Angeles St., Naga City', link: 'https://drive.google.com/file/d/1mHQOD8zDtsVoEowTDbd7rHjMn1PIzECx/view?usp=drive_link' },
-    { year: '2021', title: 'Introduction to Kubernetes', org: 'Trend Micro', link: 'https://drive.google.com/file/d/1NkBjWh5UkgPX1F6b3LgXwyEEGE1Lzx2U/view?usp=drive_link' },
-    { year: '2021', title: '1st International Conference on Emerging Technologies and Innovations (ICETI - 1)', org: 'University of Mindanao', link: 'https://drive.google.com/file/d/12VTD1GQDeIs4iiU2y1xAWlL-cgr7yAaJ/view?usp=drive_link' },
-    { year: '2021', title: 'Introduction to Amazon Web Services', org: 'Trend Micro', link: 'https://drive.google.com/file/d/1fQYgS_FoRdivELC23L8cNFj5_X8yKgw1/view?usp=drive_link'},
-    { year: '2021', title: 'Philippine Conference on Data Science and Analytics', org: 'SPARTA', link: 'https://drive.google.com/file/d/1VvmWpyXbHrP2vWy7e_NrBQx0l0gtQuc5/view?usp=drive_link'}
+{ year: '2022', title: 'Development Management 1: The Leadership That We Want!', org: 'Universidad de Sta. Isabel, Elias Angeles St., Naga City', thumbnail: '/images/seminars/manage-thumb.webp', fullRes: '/images/seminars/manage-full.webp' },
+{ year: '2021', title: 'Introduction to Kubernetes', org: 'Trend Micro', thumbnail: '/images/seminars/kube-thumb.webp', fullRes: '/images/seminars/kube-full.webp' },
+{ year: '2021', title: '1st International Conference on Emerging Technologies and Innovations (ICETI - 1)', org: 'University of Mindanao', thumbnail: '/images/seminars/confe-thumb.webp', fullRes: '/images/seminars/confe-full.webp' },
+{ year: '2021', title: 'Introduction to Amazon Web Services', org: 'Trend Micro', thumbnail: '/images/seminars/aws-thumb.webp', fullRes: '/images/seminars/aws-full.webp'},
+    { year: '2021', title: 'Philippine Conference on Data Science and Analytics', org: 'SPARTA', thumbnail: '/images/seminars/sparta-thumb.webp', fullRes: '/images/seminars/sparta-full.webp'}
 ];
 ---
 
@@ -276,7 +276,6 @@ const achievements = [
                   alt={ach.title}
                   title={`${ach.year} - ${ach.title}`} 
                   organization={ach.org}
-                  year={ach.year}
                 />
                 ))}
             </div>

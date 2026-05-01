@@ -20,7 +20,7 @@ export default defineConfig({
     }
   },
 // Enable this when the internet is back
-//  adapter: cloudflare({
-//    mode: 'static'
-//  })
+  adapter: cloudflare({
+    mode: 'static'
+  })
 });
