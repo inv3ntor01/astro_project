@@ -93,6 +93,15 @@ const achievements = [
 { year: '2021', title: 'Philippine Conference on Data Science and Analytics', org: 'SPARTA', thumbnail: '/images/seminars/sparta-thumb.webp', fullRes: '/images/seminars/sparta-full.webp'},
 { year: '2026', title: 'Future-Ready Careers: Preparing You To Thrive in a World of Innovation and Opportunity', org: 'Holy Cross of Davao College', thumbnail: '/images/seminars/hcdc-thumb.svg', fullRes: '/images/seminars/hcdc-full.svg'},
 ];
+
+const certificationsList = [
+{ title: 'Aruba Data Center Essentials', org: 'Aruba Hewlett Packard Enterprise', thumbnail: '/images/skillCert/arubaThumb.svg', fullRes: '/images/skillCert/arubaFull.svg' },
+{ title: 'Certified Computer Engineer', org: 'Computer Engineering Certification Board, Inc.', thumbnail: '/images/skillCert/cpecb.svg', fullRes: '/images/skillCert/cpecbFull.svg' },
+    { title: 'DICT-DLS005 Designing Presentation Slides', org: 'Department of Information and Communications Technology', thumbnail: '/images/skillCert/dict3.svg', fullRes: '/images/skillCert/dictFull3.svg' },
+    { title: 'DICT-ICT001 Digital Innovation in Government', org: 'Department of Information and Communications Technology', thumbnail: '/images/skillCert/dict1.svg', fullRes: '/images/skillCert/dictFull.svg' },
+    { title: 'DICT-DLS002 Navigating Google Workspace', org: 'Department of Information and Communications Technology', thumbnail: '/images/skillCert/dict2.svg', fullRes: '/images/skillCert/dictFull2.svg'},
+
+];
 ---
 
 <Layout title="CS-Vergara | Portfolio">
@@ -248,17 +257,15 @@ const achievements = [
                             <span class="material-symbols-outlined bg-primary/10 p-2 rounded-lg">card_membership</span> Certifications
                         </h2>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
-                            {[
-                                'Google Analytics Certified','Certified Computer Engineer', 'Program Advisory Council',
-                                'Introduction to Kubernetes', 'Development Mangement', 'Laboratory Safety Training Series III',
-                                'Case Assessment and Initial Industry Matching', 'DICT-DLS002 Navigating Google Workspace',
-                                'DICT-ICT001 Digital Innovation in Government', 'DICT-DLS005 Designing Presentation Slides',
-                                'Professional Organization Representative', 'Aruba Data Center Essentials'
-                            ].map((cert) => (
-                                <div class="flex items-center gap-3 p-3 bg-surface-container-low rounded-xl border border-outline-variant/5 hover:border-primary/30 transition-colors duration-300 group">
-                                    <span class="material-symbols-outlined text-primary text-sm bg-primary/5 p-1 rounded group-hover:bg-primary group-hover:text-on-primary transition-colors">verified</span>
-                                    <p class="text-xs md:text-sm font-medium text-on-surface-variant group-hover:text-on-surface transition-colors">{cert}</p>
-                                </div>
+                            {certificationsList.map((cert) => (
+                                <CertModal 
+                                    variant="list"
+                                    title={cert.title}
+                                    organization={cert.org}
+                                    thumbnailSrc={cert.thumbnail}
+                                    fullResSrc={cert.fullRes}
+                                    alt={cert.title}
+                                />
                             ))}
                         </div>
                     </div>

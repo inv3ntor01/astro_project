@@ -1,44 +1,61 @@
 ---
 interface Props {
-  thumbnailSrc: string;
-  fullResSrc: string;
+  thumbnailSrc?: string;
+  fullResSrc?: string;
   alt: string;
   title?: string;
   organization?: string;
   year?: string;
   className?: string;
+  variant?: 'card' | 'list';
 }
 
-const { thumbnailSrc, fullResSrc, alt, organization, title, year, className= '' } = Astro.props;
+const { 
+  thumbnailSrc = '/images/screen.png', 
+  fullResSrc = '/images/screen.png', 
+  alt, 
+  organization, 
+  title, 
+  year, 
+  className= '',
+  variant = 'card'
+} = Astro.props;
 ---
 
 <div class={`cert-wrapper ${className}`}>
-  <!-- 1. The Card (Trigger) -->
-  <button class="cert-trigger group/cert relative bg-surface-container-low rounded-xl overflow-hidden border border-outline-variant/10 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20" aria-label="View certification">
-    <!-- Image Section -->
-    <div class="relative overflow-hidden aspect-[4/3]">
-      <img src={thumbnailSrc} alt={alt} loading="lazy" class="w-full h-full object-fit transition-transform duration-700 group-hover/cert:scale-110" />
-      <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent opacity-60"></div>
-      
-      <!-- Hover Overlay Badge -->
-      <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover/cert:opacity-100 transition-opacity duration-300 bg-primary/10 backdrop-blur-[2px]">
-        <div class="bg-primary text-on-primary px-4 py-2 rounded-full flex items-center gap-2 transform translate-y-4 group-hover/cert:translate-y-0 transition-transform duration-300 shadow-lg">
-          <span class="material-symbols-outlined text-lg">visibility</span>
-          <span class="text-xs font-bold uppercase tracking-wider">View Certificate</span>
+  <!-- 1. The Trigger -->
+  {variant === 'card' ? (
+    <button class="cert-trigger group/cert relative w-full bg-surface-container-low rounded-xl overflow-hidden border border-outline-variant/10 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20" aria-label="View certification">
+      <!-- Image Section -->
+      <div class="relative overflow-hidden aspect-[4/3]">
+        <img src={thumbnailSrc} alt={alt} loading="lazy" class="w-full h-full object-fit transition-transform duration-700 group-hover/cert:scale-110" />
+        <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent opacity-60"></div>
+        
+        <!-- Hover Overlay Badge -->
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover/cert:opacity-100 transition-opacity duration-300 bg-primary/10 backdrop-blur-[2px]">
+          <div class="bg-primary text-on-primary px-4 py-2 rounded-full flex items-center gap-2 transform translate-y-4 group-hover/cert:translate-y-0 transition-transform duration-300 shadow-lg">
+            <span class="material-symbols-outlined text-lg">visibility</span>
+            <span class="text-xs font-bold uppercase tracking-wider">View Certificate</span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Content Section -->
-    <div class="p-5 text-left relative z-10">
-      <div class="flex items-center gap-2 mb-2">
-        {year && <span class="px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-bold rounded-md border border-primary/20 uppercase tracking-tighter">{year}</span>}
-        <span class="h-px flex-1 bg-outline-variant/20"></span>
+      <!-- Content Section -->
+      <div class="p-5 text-left relative z-10">
+        <div class="flex items-center gap-2 mb-2">
+          {year && <span class="px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-bold rounded-md border border-primary/20 uppercase tracking-tighter">{year}</span>}
+          <span class="h-px flex-1 bg-outline-variant/20"></span>
+        </div>
+        {title && <h4 class="text-on-surface font-bold text-sm md:text-base leading-snug mb-1 group-hover/cert:text-primary transition-colors duration-300">{title}</h4>}
+        {organization && <p class="text-on-surface-variant text-xs md:text-sm line-clamp-1">{organization}</p>}
       </div>
-      {title && <h4 class="text-on-surface font-bold text-sm md:text-base leading-snug mb-1 group-hover/cert:text-primary transition-colors duration-300">{title}</h4>}
-      {organization && <p class="text-on-surface-variant text-xs md:text-sm line-clamp-1">{organization}</p>}
-    </div>
-  </button>
+    </button>
+  ) : (
+    <button class="cert-trigger w-full flex items-center gap-3 p-3 bg-surface-container-low rounded-xl border border-outline-variant/5 hover:border-primary/30 transition-colors duration-300 group text-left" aria-label="View certification">
+      <span class="material-symbols-outlined text-primary text-sm bg-primary/5 p-1 rounded group-hover:bg-primary group-hover:text-on-primary transition-colors">verified</span>
+      <p class="text-xs md:text-sm font-medium text-on-surface-variant group-hover:text-on-surface transition-colors flex-1">{title}</p>
+    </button>
+  )}
 
   <!-- 2. The Modal (Hidden by default) -->
   <div class="cert-modal fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 opacity-0 invisible transition-all duration-300 pointer-events-none" role="dialog" aria-modal="true" aria-hidden="true">
